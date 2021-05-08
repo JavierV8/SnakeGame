@@ -7,6 +7,7 @@ export class Snake {
         this.rowSize = 0;
         this.food = {};
         this.snake = [];
+        this.lastTailPosition = {};
         this.currentDirection = "";
     }
 
@@ -18,8 +19,10 @@ export class Snake {
 
     getState() {
         return {
-          board: this.board,
-          rowSize: this.rowSize,
+            board: this.board,
+            snake: this.snake,
+            food: this.food,
+            rowSize: this.rowSize,
         };
     }
 
@@ -111,8 +114,65 @@ export class Snake {
     };
 
     gameLoop() {
+        this.createBoard();
         this.moveSnake();
-        this.eatSnake();
-        this.eatFood();
+        //this.eatSnake();
+        //this.eatFood();
     }
+
+    moveSnake() {
+        const snake = [...this.snake];
+        const resutl = [];
+
+        switch (this.currentDirection) {
+          case "up":
+            snake[0].Xpos <= 0
+              ? resutl.push({ Xpos: 19, Ypos: this.snake[0].Ypos, head: true })
+              : resutl.push({
+                  Xpos: snake[0].Xpos - 1,
+                  Ypos: this.snake[0].Ypos,
+                  head: true,
+                });
+            break;
+          case "left":
+            snake[0].Ypos <= 1
+              ? resutl.push({ Xpos: this.snake[0].Xpos, Ypos: 20, head: true })
+              : resutl.push({
+                  Xpos: snake[0].Xpos,
+                  Ypos: this.snake[0].Ypos - 1,
+                  head: true,
+                });
+            break;
+          case "right":
+            snake[0].Ypos >= 20
+              ? resutl.push({ Xpos: snake[0].Xpos, Ypos: 1, head: true })
+              : resutl.push({
+                  Xpos: snake[0].Xpos,
+                  Ypos: this.snake[0].Ypos + 1,
+                  head: true,
+                });
+            break;
+          case "down":
+            snake[0].Xpos >= 19
+              ? resutl.push({ Xpos: 0, Ypos: this.snake[0].Ypos, head: true })
+              : resutl.push({
+                  Xpos: snake[0].Xpos + 1,
+                  Ypos: this.snake[0].Ypos,
+                  head: true,
+                });
+            break;
+          default:
+        }
+    
+        for (let i = 1; i < snake.length; i++) {
+          resutl.push({
+            Xpos: this.snake[i - 1].Xpos,
+            Ypos: this.snake[i - 1].Ypos,
+          });
+        }
+    
+        // Update State
+        this.lastTailPosition = this.snake[snake.length - 1];
+        this.snake = [...resutl];
+      }
 }

@@ -8,6 +8,8 @@ function App() {
     snakeG: new Snake("app-id"),
     rowSize: 0,
     interval: null,
+    snake: [],
+    food: {},
   });
 
     // Set events listeners
