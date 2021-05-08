@@ -113,7 +113,7 @@ export class Snake {
         });
     
         return className;
-    };
+    }
 
     gameLoop() {
         this.createBoard();

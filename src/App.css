@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,20 +8,15 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .board {
   border: 5px solid #a6a6a6;
   margin: auto;
   margin-top: 50px;
 }
-
-.row {
-}
 .cell {
   border: 0.5px solid #a6a6a6;
   display: inline-block;
 }
-
 .cell-green {
   background-color: green;
 }
@@ -32,7 +26,6 @@
 .cell-orange {
   background-color: orange;
 }
-
 .score-container {
   width: 50%;
   margin: auto;
@@ -42,7 +35,6 @@
   width: 50%;
   text-align: center;
 }
-
 .gameOver-component {
   border: 5px solid #a6a6a6;
   width: 50%;
