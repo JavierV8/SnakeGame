@@ -10,6 +10,15 @@ function App() {
     interval: null,
   });
 
+    // Set events listeners
+    useEffect(() => {
+      window.addEventListener("resize", () => state.snakeG.createBoard());
+  
+      return () => {
+        window.removeEventListener("resize", () => state.snakeG.createBoard());
+      };
+    }, []);
+
   // Start Game
   useEffect(() => {
     state.snakeG.startGame();
@@ -29,7 +38,6 @@ function App() {
       };
     });
   };
-
 
   return (
     <div className="App">
