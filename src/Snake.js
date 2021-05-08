@@ -174,5 +174,37 @@ export class Snake {
         // Update State
         this.lastTailPosition = this.snake[snake.length - 1];
         this.snake = [...resutl];
-      }
+    }
+
+    handleKeyDown(event) {
+        switch (event.keyCode) {
+          case 32:
+            this.resetGame();
+            break;
+          case 37:
+          case 65:
+            if (this.currentDirection === "right") return;
+            this.currentDirection = "left";
+            break;
+          case 38:
+          case 87:
+            if (this.currentDirection === "down") return;
+            this.currentDirection = "up";
+            break;
+          case 39:
+          case 68:
+            if (this.currentDirection === "left") return;
+            this.currentDirection = "right";
+            break;
+          case 40:
+          case 83:
+            if (this.currentDirection === "up") return;
+            this.currentDirection = "down";
+            break;
+          default:
+        }
+    }
+
+
+
 }

@@ -12,12 +12,16 @@ function App() {
     food: {},
   });
 
-    // Set events listeners
+  // Set events listeners
   useEffect(() => {
-    window.addEventListener("resize", () => state.snakeG.createBoard());
+    window.addEventListener("keydown", (event) =>
+      state.snakeG.handleKeyDown(event)
+    );
+    window.addEventListener("resize", () => state.snakeG.resizeBoard());
 
     return () => {
-      window.removeEventListener("resize", () => state.snakeG.createBoard());
+      window.removeEventListener("keydown", state.snakeG.handleKeyDown());
+      window.removeEventListener("resize", () => state.snakeG.resizeBoard());
     };
   }, []);
 
