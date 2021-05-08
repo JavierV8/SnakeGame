@@ -1,4 +1,5 @@
 const BOARD_SIZE = 20;
+const SNAKE_START_SIZE = 5;
 
 export class Snake {
     constructor() {
@@ -7,6 +8,8 @@ export class Snake {
     }
 
     startGame() {
+        this.setSnakePosition();
+        this.setFoodPosition();
         this.createBoard();
     }
 
@@ -15,6 +18,36 @@ export class Snake {
           board: this.board,
           rowSize: this.rowSize,
         };
+    }
+
+    setSnakePosition() {
+        const snake = [];
+        let Xpos = Math.floor(Math.random() * (20 - SNAKE_START_SIZE + 1)) + SNAKE_START_SIZE;
+        let Ypos = Math.floor(Math.random() * (20 - SNAKE_START_SIZE + 1)) + SNAKE_START_SIZE;
+        snake.push({ Xpos, Ypos, head: true });
+        const direction = Math.random() < 0.5 ? "right" : "down";
+        for (let i = 1; i < SNAKE_START_SIZE; i++) {
+            direction === "right" ? (Ypos = Ypos - 1) : (Xpos = Xpos - 1);
+            snake.push({ Xpos, Ypos });
+        }
+
+        // Update State
+        this.snake = [...snake];
+        this.currentDirection = direction;
+    }
+
+    setFoodPosition() {
+        let XFoodpos = Math.floor(Math.random() * 19) + 1;
+        let YFoodpos = Math.floor(Math.random() * 19) + 1;
+        for (let i = 0; i < this.snake.length; i++) {
+          while (XFoodpos === this.snake[i].Xpos && YFoodpos === this.snake[i].Ypos) {
+            XFoodpos = Math.floor(Math.random() * 19) + 1;
+            YFoodpos = Math.floor(Math.random() * 19) + 1;
+          }
+        }
+
+        // Update State
+        this.food = { XFoodpos, YFoodpos };
     }
 
     createBoard() {
@@ -58,6 +91,19 @@ export class Snake {
     }
 
     getCellClassName = (cellValue) => {
-        return "cell";
+        let className = "cell";
+        if (
+          cellValue[0] === this.food.XFoodpos &&
+          cellValue[1] === this.food.YFoodpos
+        )
+          className = "cell cell-red";
+        this.snake.forEach((elem) => {
+          if (elem.Xpos === cellValue[0] && elem.Ypos === cellValue[1])
+            className = "cell cell-green";
+          if (elem.Xpos === cellValue[0] && elem.Ypos === cellValue[1] && elem.head)
+            className = "cell cell-orange";
+        });
+    
+        return className;
     };
 }
