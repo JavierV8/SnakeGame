@@ -20,11 +20,11 @@ function App() {
     window.addEventListener("keydown", (event) =>
       state.snakeG.handleKeyDown(event)
     );
-    window.addEventListener("resize", () => state.snakeG.resizeBoard());
+    window.addEventListener("resize", () => state.snakeG.createBoard());
 
     return () => {
       window.removeEventListener("keydown", state.snakeG.handleKeyDown());
-      window.removeEventListener("resize", () => state.snakeG.resizeBoard());
+      window.removeEventListener("resize", () => state.snakeG.createBoard());
     };
   }, []);
 
