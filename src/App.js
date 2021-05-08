@@ -10,6 +10,7 @@ function App() {
     interval: null,
     snake: [],
     food: {},
+    isGameOver: false,
   });
 
   // Set events listeners

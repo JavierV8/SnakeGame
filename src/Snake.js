@@ -9,6 +9,7 @@ export class Snake {
         this.snake = [];
         this.lastTailPosition = {};
         this.currentDirection = "";
+        this.isGameOver = false;
     }
 
     startGame() {
@@ -23,6 +24,7 @@ export class Snake {
             snake: this.snake,
             food: this.food,
             rowSize: this.rowSize,
+            isGameOver: this.isGameOver,
         };
     }
 
@@ -234,6 +236,14 @@ export class Snake {
           if (this.score > highScore) {
             localStorage.setItem("snakeHighScore", this.score);
           }
+        }
+    }
+
+    eatSnake() {
+        const snake = this.snake;
+        for (let i = 1; i < snake.length; i++) {
+          if (snake[0].Xpos === snake[i].Xpos && snake[0].Ypos === snake[i].Ypos)
+            this.isGameOver = true;
         }
     }
 
