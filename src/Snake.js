@@ -118,7 +118,7 @@ export class Snake {
     gameLoop() {
         this.createBoard();
         this.moveSnake();
-        //this.eatSnake();
+        this.eatSnake();
         this.eatFood();
     }
 

@@ -10,6 +10,8 @@ function App() {
     interval: null,
     snake: [],
     food: {},
+    score: 0,
+    highScore: Number(localStorage.getItem("snakeHighScore")) || 0,
     isGameOver: false,
   });
 
@@ -47,13 +49,52 @@ function App() {
     });
   };
 
+  // Reset HighScore
+  useEffect(() => {
+    setState((state) => {
+      return {
+        ...state,
+        highScore: Number(localStorage.getItem("snakeHighScore")) || 0,
+      };
+    });
+  }, [state.isGameOver]);
+
+  const isVisible = !state.isGameOver
+  ? { visibility: "visible" }
+  : { visibility: "hidden" };
+
   return (
-    <div className="App">
-      <div className="board" id="board-id">
-        {state.board}
+    <div>
+      <GameOver isGameOver={state.isGameOver} />
+      <div style={isVisible}>
+        <div className="board" id="board-id">
+          {state.board}
+        </div>
+        <div className="score-container">
+          <div>
+            <h2>Your score</h2>
+            <h2>{state.score}</h2>
+          </div>
+          <div>
+            <h2>Higer score</h2>
+            <h2>{state.highScore}</h2>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 export default App;
+
+function GameOver(props) {
+  const { isGameOver } = props;
+  const isDisplay = isGameOver ? { display: "block" } : { display: "none" };
+  return (
+    <div className="gameOver-component" style={isDisplay}>
+      <h1>GAME OVER</h1>
+      <h3>Press spacebar to start again</h3>
+    </div>
+  );
+}
+
