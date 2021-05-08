@@ -5,6 +5,9 @@ export class Snake {
     constructor() {
         this.board = [];
         this.rowSize = 0;
+        this.food = {};
+        this.snake = [];
+        this.currentDirection = "";
     }
 
     startGame() {
@@ -106,4 +109,10 @@ export class Snake {
     
         return className;
     };
+
+    gameLoop() {
+        this.moveSnake();
+        this.eatSnake();
+        this.eatFood();
+    }
 }

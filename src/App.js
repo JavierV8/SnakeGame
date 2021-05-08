@@ -31,6 +31,7 @@ function App() {
   }, []);
 
   const loop = () => {
+    state.snakeG.gameLoop();
     setState((state) => {
       return {
         ...state,
