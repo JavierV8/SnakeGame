@@ -1,19 +1,5 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,15 +10,45 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.board {
+  border: 5px solid #a6a6a6;
+  margin: auto;
+  margin-top: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.row {
+}
+.cell {
+  border: 0.5px solid #a6a6a6;
+  display: inline-block;
+}
+
+.cell-green {
+  background-color: green;
+}
+.cell-red {
+  background-color: red;
+}
+.cell-orange {
+  background-color: orange;
+}
+
+.score-container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+}
+.score-container div {
+  width: 50%;
+  text-align: center;
+}
+
+.gameOver-component {
+  border: 5px solid #a6a6a6;
+  width: 50%;
+  max-width: 800px;
+  height: 50%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
 }
