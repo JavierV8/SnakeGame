@@ -117,7 +117,7 @@ export class Snake {
         this.createBoard();
         this.moveSnake();
         //this.eatSnake();
-        //this.eatFood();
+        this.eatFood();
     }
 
     moveSnake() {
@@ -202,6 +202,38 @@ export class Snake {
             this.currentDirection = "down";
             break;
           default:
+        }
+    }
+
+    eatFood() {
+        const snake = [...this.snake];
+        const food = this.food;
+    
+        // if the snake's head is on an food
+        if (snake[0].Xpos === food.XFoodpos && snake[0].Ypos === food.YFoodpos) {
+          const newTail = this.lastTailPosition;
+    
+          // increase snake size
+          snake.push(newTail);
+    
+          // Set Food position
+          let XFoodpos = Math.floor(Math.random() * 19) + 1;
+          let YFoodpos = Math.floor(Math.random() * 19) + 1;
+          for (let i = 0; i < snake.length; i++) {
+            while (XFoodpos === snake[i].Xpos && YFoodpos === snake[i].Ypos) {
+              XFoodpos = Math.floor(Math.random() * 19) + 1;
+              YFoodpos = Math.floor(Math.random() * 19) + 1;
+            }
+          }
+    
+          // Update State
+          this.snake = snake;
+          this.food = { XFoodpos, YFoodpos };
+          this.score++;
+          const highScore = Number(localStorage.getItem("snakeHighScore")) || 0;
+          if (this.score > highScore) {
+            localStorage.setItem("snakeHighScore", this.score);
+          }
         }
     }
 
