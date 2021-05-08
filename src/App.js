@@ -11,13 +11,13 @@ function App() {
   });
 
     // Set events listeners
-    useEffect(() => {
-      window.addEventListener("resize", () => state.snakeG.createBoard());
-  
-      return () => {
-        window.removeEventListener("resize", () => state.snakeG.createBoard());
-      };
-    }, []);
+  useEffect(() => {
+    window.addEventListener("resize", () => state.snakeG.createBoard());
+
+    return () => {
+      window.removeEventListener("resize", () => state.snakeG.createBoard());
+    };
+  }, []);
 
   // Start Game
   useEffect(() => {
