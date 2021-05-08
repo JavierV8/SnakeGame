@@ -247,6 +247,15 @@ export class Snake {
         }
     }
 
-
-
+    resetGame() {
+        this.board = [];
+        this.snake = [];
+        this.lastTailPosition = {};
+        this.food = {};
+        this.currentDirection = "";
+        this.isGameOver = false;
+        this.score = 0;
+        this.rowSize = 0;
+        this.startGame();
+    }
 }
