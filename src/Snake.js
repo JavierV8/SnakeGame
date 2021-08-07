@@ -7,6 +7,7 @@ export class Snake {
         this.rowSize = 0;
         this.food = {};
         this.snake = [];
+        this.score = 0;
         this.lastTailPosition = {};
         this.currentDirection = "";
         this.isGameOver = false;
@@ -25,6 +26,7 @@ export class Snake {
             food: this.food,
             rowSize: this.rowSize,
             isGameOver: this.isGameOver,
+            score: this.score,
         };
     }
 
